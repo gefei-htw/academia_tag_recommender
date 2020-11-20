@@ -1,11 +1,11 @@
 # academia_tag_recommender
 
-Add a short description here!
+Tag Recommender for [academia.stackexchange.com](https://academia.stackexchange.com/)
 
 
 ## Description
 
-A longer description of your project goes here...
+TODO
 
 
 ## Note
