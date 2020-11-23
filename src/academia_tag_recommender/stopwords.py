@@ -1,7 +1,8 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from academia_tag_recommender.definitions import DATA_PATH
 
-data_folder = Path("../data/external/")
+data_folder = Path(DATA_PATH + '/external')
 
 
 def read_stopwordlist():

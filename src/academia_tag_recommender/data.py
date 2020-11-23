@@ -1,7 +1,8 @@
 from pathlib import Path
 import xml.etree.ElementTree as ET
+from academia_tag_recommender.definitions import DATA_PATH
 
-data_folder = Path("../data/raw/")
+data_folder = Path(DATA_PATH + '/raw')
 
 tagTree = ET.parse(data_folder / 'Tags.xml')
 tags = tagTree.getroot()

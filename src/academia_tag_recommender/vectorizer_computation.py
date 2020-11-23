@@ -3,8 +3,9 @@ import os.path
 import time
 from pathlib import Path
 from academia_tag_recommender.stopwords import stopwordlist
+from academia_tag_recommender.definitions import MODELS_PATH
 
-data_folder = Path("../models/document_representation")
+data_folder = Path(MODELS_PATH + '/document_representation')
 
 
 def top_words(features, vectorizer):
@@ -23,7 +24,14 @@ def print_results(result):
 def save_computation_result(result):
     results_path = data_folder / 'results.joblib'
     results = load(results_path)
-    results.append(result)
+    index = -1
+    for idx, result_ in enumerate(results):
+        if result_['v'] == result['v'] and result_['p'] == result['p'] and result_['t'] == result['t'] and result_['stopwords'] == result['stopwords'] and result_['n_grams'] == result['n_grams']:
+            index = idx
+    if index > -1:
+        results[index] = result
+    else:
+        results.append(result)
     dump(results, results_path)
 
 
