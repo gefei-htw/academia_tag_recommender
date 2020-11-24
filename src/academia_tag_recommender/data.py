@@ -13,7 +13,7 @@ users = usersTree.getroot()
 postTree = ET.parse(data_folder / 'Posts.xml')
 posts = postTree.getroot()
 
-questions = list(filter(lambda x: x.attrib['PostTypeId'] == '1', posts))
+questions = [post for post in posts if post.attrib['PostTypeId'] == '1']
 
 commentTree = ET.parse(data_folder / 'Comments.xml')
 comments = commentTree.getroot()
