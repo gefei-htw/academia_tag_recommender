@@ -5,7 +5,7 @@ import numpy as np
 from academia_tag_recommender.data import questions
 
 
-def formatTags(tags):
+def format_tags(tags):
     tags_ = tags.replace('<', '').split('>')
     return tags_[0:(len(tags_)-1)]
 
@@ -16,7 +16,7 @@ class Document:
         self.title = title
         self.body = body
         self.text = title + body
-        self.tags = formatTags(tags)
+        self.tags = format_tags(tags)
 
     def __repr__(self):
         return '[title: {}, body: {}, text: {}, tag: {}]'.format(self.title, self.body, self.text, self.tags)

@@ -61,7 +61,7 @@ def handle_result(vectorizer, preprocessor, tokenizer, stop_word_option, n_gram_
     save_computation_result(result)
 
 
-def get_vect_feat_with_params(data, vectorizer, tokenizer, preprocessor, stop_word_option, n_gram_option, rerun):
+def get_vect_feat_with_params(data, vectorizer, tokenizer, preprocessor, stop_word_option, n_gram_option, rerun=False):
     name = 'v={}&p={}&t={}&stopwords={}&ngrams={}'.format(vectorizer.__name__, preprocessor.__name__ if preprocessor else 'none',
                                                           tokenizer.__name__ if tokenizer else 'none', stop_word_option if stop_word_option else 'none', str(n_gram_option))
     vectorizer_path = data_folder / ('vectorizer/{}.joblib'.format(name))

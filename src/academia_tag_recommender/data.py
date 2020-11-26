@@ -4,19 +4,19 @@ from academia_tag_recommender.definitions import DATA_PATH
 
 data_folder = Path(DATA_PATH + '/raw')
 
-tagTree = ET.parse(data_folder / 'Tags.xml')
-tags = tagTree.getroot()
+tag_tree = ET.parse(data_folder / 'Tags.xml')
+tags = tag_tree.getroot()
 
-usersTree = ET.parse(data_folder / 'Users.xml')
-users = usersTree.getroot()
+users_tree = ET.parse(data_folder / 'Users.xml')
+users = users_tree.getroot()
 
-postTree = ET.parse(data_folder / 'Posts.xml')
-posts = postTree.getroot()
+post_tree = ET.parse(data_folder / 'Posts.xml')
+posts = post_tree.getroot()
 
 questions = [post for post in posts if post.attrib['PostTypeId'] == '1']
 
-commentTree = ET.parse(data_folder / 'Comments.xml')
-comments = commentTree.getroot()
+comment_tree = ET.parse(data_folder / 'Comments.xml')
+comments = comment_tree.getroot()
 
-voteTree = ET.parse(data_folder / 'Votes.xml')
-votes = voteTree.getroot()
+vote_tree = ET.parse(data_folder / 'Votes.xml')
+votes = vote_tree.getroot()
