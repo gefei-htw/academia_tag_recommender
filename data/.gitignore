@@ -1,5 +1,6 @@
 # Ignore everything in this directory
-*
+interim
+preprocessed
 # Except this file and .gitignore in sub directories
 !.gitignore
 !raw
