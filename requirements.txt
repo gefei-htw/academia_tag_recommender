@@ -4,18 +4,6 @@
 # C:\Users\Monique\Masterthesis\academia_tag_recommender\docs\conf.py: 33,35,45
 Sphinx == 3.1.2
 
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\setuptools_scm\__main__.py: 3,4,5
-backmap == 0.2.6
-
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\scripts\train_model.py: 7
-click == 7.1.2
-
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\termui.py: 55
-colorama == 0.4.3
-
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\scripts\train_model.py: 8
-ipython == 7.16.1
-
 # C:\Users\Monique\Masterthesis\academia_tag_recommender\build\lib\academia_tag_recommender\vectorizer_computation.py: 1
 # C:\Users\Monique\Masterthesis\academia_tag_recommender\src\academia_tag_recommender\vectorizer_computation.py: 1
 joblib == 0.16.0
@@ -36,27 +24,5 @@ nltk == 3.5
 # C:\Users\Monique\Masterthesis\academia_tag_recommender\src\academia_tag_recommender\prints.py: 4
 numpy == 1.18.5
 
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\api\__init__.py: 10
-pyscaffold == 3.2.3
-
 # C:\Users\Monique\Masterthesis\academia_tag_recommender\docs\conf.py: 79
 recommonmark == 0.6.0
-
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\__init__.py: 2
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\cli.py: 11,125
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\ptr.py: 19,20,21,43,89
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\setuptools_scm\discover.py: 2
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\setuptools_scm\integration.py: 1
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\setuptools_scm\version.py: 10,12
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\info.py: 155
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\templates\__init__.py: 8
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\update.py: 10
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\utils.py: 217,218
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\build\lib\academia_tag_recommender\__init__.py: 2
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\docs\conf.py: 46
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\setup.py: 12,13
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\src\academia_tag_recommender\__init__.py: 2
-setuptools == 49.2.0.post20200714
-
-# C:\Users\Monique\Masterthesis\academia_tag_recommender\.eggs\PyScaffold-3.2.3-py3.8.egg\pyscaffold\contrib\setuptools_scm\__main__.py: 3,4,5
-setuptools-scm == 4.1.2
