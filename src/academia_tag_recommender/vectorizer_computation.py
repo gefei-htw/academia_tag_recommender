@@ -73,11 +73,11 @@ def get_vect_feat_with_params(data, vectorizer, tokenizer, preprocessor, stop_wo
     else:
         print('Fitting new model')
         if stop_word_option and preprocessor and tokenizer:
-            stop_words_ = tokenizer(preprocessor(' '.join(stopwordlist)))
+            stop_words_ = tokenizer()(preprocessor()(' '.join(stopwordlist())))
         else:
             stop_words_ = None
         vectorizer_model = vectorizer(
-            min_df=2, tokenizer=tokenizer, preprocessor=preprocessor, stop_words=stop_words_, ngram_range=n_gram_option)
+            min_df=2, tokenizer=tokenizer(), preprocessor=preprocessor(), stop_words=stop_words_, ngram_range=n_gram_option)
         feature_model, time = fit_vectorizer(vectorizer_model, data, name)
         handle_result(vectorizer, preprocessor, tokenizer, stop_word_option,
                       n_gram_option, time, feature_model, vectorizer_model)

@@ -2,31 +2,89 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer as NLTKLemmatizer
 from nltk.stem.snowball import EnglishStemmer as NLTKEnglishStemmer, PorterStemmer as NLTKPorterStemmer
 from nltk.stem.lancaster import LancasterStemmer as NTLKLancasterStemmer
-import re
 
-punctuation_re = re.compile(r'[^\w\s]')
 
-def BasicTokenizer(text):
-    tokens = word_tokenize(text)
-    tokens = [word for word in tokens if len(word) > 1]
-    return tokens
+class BasicTokenizer:
+    """Splits text into tokens that are minimum 2 characters long.
 
-def EnglishStemmer(text):
-    tokens = BasicTokenizer(text)
-    tokens = [NLTKEnglishStemmer().stem(word) for word in tokens]         # stem words using the english stemmer
-    return tokens
+        :param text: The unprocessed string
+        :type text: str
+        :return: The list of tokens
+        :rtype: list(str)
+        """
 
-def PorterStemmer(text):
-    tokens = BasicTokenizer(text)
-    tokens = [NLTKPorterStemmer().stem(word) for word in tokens]          # stem words using the porter stemmer
-    return tokens
+    def __call__(self, text):
+        tokens = word_tokenize(text)
+        return [word for word in tokens if len(word) > 1]
 
-def LancasterStemmer(text):
-    tokens = BasicTokenizer(text)
-    tokens = [NTLKLancasterStemmer().stem(word) for word in tokens]       # stem words using the lancaster stemmer
-    return tokens
 
-def Lemmatizer(text):
-    tokens = BasicTokenizer(text)
-    tokens = [NLTKLemmatizer().lemmatize(word) for word in tokens] # lemmatize words
-    return tokens    
+class EnglishStemmer:
+    """Splits text into tokens using the :class:`BasicTokenizer` and stems them using the :class:`nltk.stem.snowball.EnglishStemmer`.
+
+        :param text: The unprocessed string
+        :type text: str
+        :return: The list of tokens
+        :rtype: list(str)
+        """
+
+    def __self__(self):
+        self.tokenizer = BasicTokenizer()
+
+    def __call__(self, text):
+        tokens = self.tokenizer(text)
+        tokens = [NLTKEnglishStemmer().stem(word) for word in tokens]
+        return tokens
+
+
+class PorterStemmer:
+    """Splits text into tokens using the :class:`BasicTokenizer` and stems them using the :class:`nltk.stem.snowball.PorterStemmer`.
+
+        :param text: The unprocessed string
+        :type text: str
+        :return: The list of tokens
+        :rtype: list(str)
+        """
+
+    def __self__(self):
+        self.tokenizer = BasicTokenizer()
+
+    def __call__(self, text):
+        tokens = self.tokenizer(text)
+        tokens = [NLTKPorterStemmer().stem(word) for word in tokens]
+        return tokens
+
+
+class LancasterStemmer:
+    """Splits text into tokens using the :class:`BasicTokenizer` and stems them using the :class:`nltk.stem.lancaster.LancasterStemmer`.
+
+        :param text: The unprocessed string
+        :type text: str
+        :return: The list of tokens
+        :rtype: list(str)
+        """
+
+    def __self__(self):
+        self.tokenizer = BasicTokenizer()
+
+    def __call__(self, text):
+        tokens = self.tokenizer(text)
+        tokens = [NTLKLancasterStemmer().stem(word) for word in tokens]
+        return tokens
+
+
+class Lemmatizer:
+    """Splits text into tokens using the :class:`BasicTokenizer` and lemmatizes them using the :class:`nltk.stem.WordNetLemmatizer`.
+
+        :param text: The unprocessed string
+        :type text: str
+        :return: The list of tokens
+        :rtype: list(str)
+        """
+
+    def __self__(self):
+        self.tokenizer = BasicTokenizer()
+
+    def __call__(self, text):
+        tokens = self.tokenizer(text)
+        tokens = [NLTKLemmatizer().lemmatize(word) for word in tokens]
+        return tokens

@@ -46,7 +46,8 @@ try:
     from pkg_resources import parse_version
 
     cmd_line_template = "sphinx-apidoc -f -o {outputdir} {moduledir}"
-    cmd_line = cmd_line_template.format(outputdir=output_dir, moduledir=module_dir)
+    cmd_line = cmd_line_template.format(
+        outputdir=output_dir, moduledir=module_dir)
 
     args = cmd_line.split(" ")
     if parse_version(sphinx.__version__) >= parse_version('1.7'):
@@ -68,7 +69,6 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
               'sphinx.ext.doctest', 'sphinx.ext.ifconfig', 'sphinx.ext.mathjax',
               'sphinx.ext.napoleon']
 extensions.append('recommonmark')
-extensions.append('recommonmark')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -85,17 +85,6 @@ def setup(app):
     }, True)
     app.add_transform(AutoStructify)
 
-
-# To configure AutoStructify
-def setup(app):
-    from recommonmark.transform import AutoStructify
-    app.add_config_value('recommonmark_config', {
-        'auto_toc_tree_section': 'Contents',
-        'enable_eval_rst': True,
-        'enable_math': True,
-        'enable_inline_math': True
-    }, True)
-    app.add_transform(AutoStructify)
 
 # The suffix of source filenames.
 source_suffix = ['.rst', '.md']
@@ -248,21 +237,21 @@ htmlhelp_basename = 'academia_tag_recommender-doc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-# 'papersize': 'letterpaper',
+    # The paper size ('letterpaper' or 'a4paper').
+    # 'papersize': 'letterpaper',
 
-# The font size ('10pt', '11pt' or '12pt').
-# 'pointsize': '10pt',
+    # The font size ('10pt', '11pt' or '12pt').
+    # 'pointsize': '10pt',
 
-# Additional stuff for the LaTeX preamble.
-# 'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    # 'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'user_guide.tex', u'academia_tag_recommender Documentation',
-   u'Monique Exner', 'manual'),
+    ('index', 'user_guide.tex', u'academia_tag_recommender Documentation',
+     u'Monique Exner', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -295,4 +284,5 @@ intersphinx_mapping = {
     'sklearn': ('http://scikit-learn.org/stable', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
     'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
+    'nltk': ('https://www.nltk.org/', None),
 }
