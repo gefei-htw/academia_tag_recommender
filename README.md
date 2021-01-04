@@ -31,11 +31,11 @@ $ python setup.py install
 ## Features
 List of features ready and TODOs for future development
 * [Initital data analysis](notebooks/1.0-me-initial-data-exploration.ipynb)
-* [Document representation](notebooks/2.0-me-document-representation)
+* [Document representation](notebooks/2.0-me-document-representation.ipynb)
+* [Dimensionality reduction](notebooks/3.0-me-dimensionality-reduction.ipynb)
+* [Classifier creation](notebooks/4.0-me-classification.ipynb)
 
 To-do list:
-* Dimensionality reduction
-* Classifier creation
 * Classifier evaluation
 * Final classifier ensamble -> Tag recommendation
 
