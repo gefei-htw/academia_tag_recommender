@@ -34,13 +34,14 @@ List of features ready and TODOs for future development
 * [Document representation](notebooks/2.0-me-document-representation.ipynb)
 * [Dimensionality reduction](notebooks/3.0-me-dimensionality-reduction.ipynb)
 * [Classifier creation](notebooks/4.0-me-classification.ipynb)
+* [Classifier evaluation](notebooks/5.0-me-evaluation.ipynb)
 
-To-do list:
-* Classifier evaluation
-* Final classifier ensamble -> Tag recommendation
+To-Do:
+* Multi-label classifier (algorithm adaption, problem transformation, ensemble)
+* Tag recommendation
 
 ## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+Project is: _in progress_
 
 ## Note
 
