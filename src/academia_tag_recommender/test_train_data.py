@@ -1,36 +1,50 @@
 import numpy as np
+from joblib import dump, load
+from pathlib import Path
+from academia_tag_recommender.definitions import MODELS_PATH
 from academia_tag_recommender.vectorizer_computation import get_vect_feat_with_params
 from academia_tag_recommender.documents import documents as get_documents
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MaxAbsScaler
 
+data_folder = Path(MODELS_PATH + '/dimension_reduction')
+
 documents = get_documents()
 texts = [document.text for document in documents]
 
 
-def get_test_train_data(vectorizer, tokenizer, preprocessor, stopwords, n_grams, split, multi):
-    X, y = get_X_y(vectorizer, tokenizer, preprocessor, stopwords, n_grams)
+def get_test_train_data(X, y, split=0.25, multi=True):
 
     if multi:
-        X = X.toarray()
         X, y = remove_classes_with_few_occurences(X, y)
     else:
         y = y[:, 7]
 
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=0)
+        X, y, test_size=split, random_state=0)
     X_train, X_test = scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
 
 
 def get_X_y(vectorizer, tokenizer, preprocessor, stopwords, n_grams):
-    [vectorizer, features] = get_vect_feat_with_params(
-        texts, vectorizer, tokenizer, preprocessor, stopwords, n_grams)
-    X = features
-    _, y = fit_labels()
+    X = get_X(vectorizer, tokenizer, preprocessor, stopwords, n_grams)
+    y = get_y()
     return (X, y)
+
+
+def get_X(vectorizer, tokenizer, preprocessor, stopwords, n_grams):
+    [_, features] = get_vect_feat_with_params(
+        texts, vectorizer, tokenizer, preprocessor, stopwords, n_grams)
+    return features
+
+
+def get_X_reduced(prepocessing_definition):
+    file_name = str(prepocessing_definition) + '.joblib'
+    path = data_folder / file_name
+    _, X = load(path)
+    return X
 
 
 def fit_labels():
@@ -38,6 +52,11 @@ def fit_labels():
     mlb = MultiLabelBinarizer()
     y = mlb.fit_transform(label)
     return (mlb, y)
+
+
+def get_y():
+    _, y = fit_labels()
+    return y
 
 
 def get_all_labels():
