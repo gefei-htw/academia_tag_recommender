@@ -3,7 +3,7 @@ from joblib import dump, load
 from pathlib import Path
 from academia_tag_recommender.definitions import MODELS_PATH
 from academia_tag_recommender.vectorizer_computation import get_vect_feat_with_params
-from academia_tag_recommender.documents import documents
+from academia_tag_recommender.data import documents
 from sklearn.preprocessing import MultiLabelBinarizer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MaxAbsScaler
