@@ -1,24 +1,8 @@
 """Handles documents."""
-
 import nltk
 import matplotlib.pyplot as plt
 import numpy as np
-
 from academia_tag_recommender.data import questions
-
-
-def _format_tags(tags):
-    """Reformats a string of tags.
-
-    Extracts a list of strings from a string in diamond notation.
-
-    :param tags: Tags in diamond notation as one string
-    :type tags: str
-    :return: A list of tags
-    :rtype: list(str)
-    """
-    tags_ = tags.replace('<', '').split('>')
-    return tags_[0:(len(tags_)-1)]
 
 
 class Document:
@@ -50,11 +34,15 @@ class Document:
         return '[title: {}, body: {}, text: {}, tag: {}]'.format(self.title, self.body, self.text, self.tags)
 
 
-def documents():
-    """Return documents from the stack exchange data dump.
+def _format_tags(tags):
+    """Reformats a string of tags.
 
-    :return: A list of documents
-    :rtype: list(Document)
+    Extracts a list of strings from a string in diamond notation.
+
+    :param tags: Tags in diamond notation as one string
+    :type tags: str
+    :return: A list of tags
+    :rtype: list(str)
     """
-    return [Document(document.attrib['Title'], document.attrib['Body'],
-                     document.attrib['Tags']) for document in questions()]
+    tags_ = tags.replace('<', '').split('>')
+    return tags_[0:(len(tags_)-1)]
