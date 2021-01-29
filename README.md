@@ -3,7 +3,7 @@
 Tag Recommender for [academia.stackexchange.com](https://academia.stackexchange.com/)
 
 ## Table of contents
-* [description](#description)
+* [Description](#description)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
@@ -35,9 +35,10 @@ List of features ready and TODOs for future development
 * [Dimensionality reduction](notebooks/3.0-me-dimensionality-reduction.ipynb)
 * [Classifier creation](notebooks/4.0-me-classification.ipynb)
 * [Classifier evaluation](notebooks/5.0-me-evaluation.ipynb)
+* [Problem transformation](notebooks/6.0-me-problem-transformation.ipynb) _in progress_
 
 To-Do:
-* Multi-label classifier (algorithm adaption, problem transformation, ensemble)
+* Multi-label classifier (algorithm adaption, ensemble)
 * Tag recommendation
 
 ## Status
