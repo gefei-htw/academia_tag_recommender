@@ -6,8 +6,6 @@ from academia_tag_recommender.definitions import DATA_PATH
 
 _DATA_FOLDER = Path(DATA_PATH + '/external')
 
-stopwordlist = _stopwordlist()
-
 
 def _stopwordlist():
     """Return a stopwordlist.
@@ -19,3 +17,6 @@ def _stopwordlist():
         sws = [line.partition('|')[0].rstrip() for line in swlist]
         sws = [word for word in sws if word]
         return sws
+
+
+stopwordlist = _stopwordlist()

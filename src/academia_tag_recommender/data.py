@@ -19,7 +19,7 @@ users = _users_tree.getroot()
 
 posts = _post_tree.getroot()
 
-questions = [post for post in posts() if post.attrib['PostTypeId'] == '1']
+questions = [post for post in posts if post.attrib['PostTypeId'] == '1']
 
 documents = [Document(document.attrib['Title'], document.attrib['Body'],
                       document.attrib['Tags']) for document in questions]
