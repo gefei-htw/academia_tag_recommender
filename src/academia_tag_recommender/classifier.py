@@ -35,8 +35,11 @@ class Classifier:
         :param X: The X data
         :param y: The y data
         """
-        prediction = self.classifier.predict(X)
+        prediction = self.predict(X)
         self.evaluate(y, prediction)
+
+    def predict(self, X):
+        return self.classifier.predict(X)
 
     def evaluate(self, y, prediction):
         """Evaluate the similarity between y and prediction.

@@ -5,6 +5,7 @@ from academia_tag_recommender.definitions import MODELS_PATH
 from academia_tag_recommender.vectorizer_computation import get_vect_feat_with_params
 from academia_tag_recommender.data import documents
 from sklearn.preprocessing import MultiLabelBinarizer
+from skmultilearn.model_selection import iterative_train_test_split
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MaxAbsScaler
 
@@ -15,13 +16,17 @@ texts = [document.text for document in documents]
 
 def get_test_train_data(X, y, split=0.25, multi=True):
 
+    print(y.shape)
     if multi:
-        X, y = remove_classes_with_few_occurences(X, y)
+        label_indices = get_class_indices_with_enough_occurence(y)
+        y = np.array([[column for i, column in enumerate(
+            row) if i in label_indices] for row in y])
     else:
         y = y[:, 7]
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=split, random_state=0)
+    #X_train, X_test, y_train, y_test = iterative_train_test_split(X, y, test_size=split)
     X_train, X_test = scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
@@ -80,31 +85,5 @@ def scale(train, test):
     return (train, test)
 
 
-def get_idx_with_few_occurences(y, n):
-    class_occurences = y.sum(axis=0)
-    lable_idx_to_remove = []
-    for index, class_occurences in enumerate(class_occurences):
-        if class_occurences < n:
-            lable_idx_to_remove.append(index)
-
-    data_idx_to_remove = []
-    for index, lable in enumerate(y):
-        for lable_idx in lable_idx_to_remove:
-            if lable[lable_idx] == 1:
-                data_idx_to_remove.append(index)
-
-    return [lable_idx_to_remove, data_idx_to_remove]
-
-
-def remove_classes_with_few_occurences(X, y, n=3):
-    [lable_idx_to_remove,
-        data_idx_to_remove] = get_idx_with_few_occurences(y, n)
-
-    while len(lable_idx_to_remove) > 0 or len(data_idx_to_remove) > 0:
-        y = np.delete(y, lable_idx_to_remove, axis=1)
-        y = np.delete(y, data_idx_to_remove, axis=0)
-        X = np.delete(X, data_idx_to_remove, axis=0)
-        [lable_idx_to_remove,
-            data_idx_to_remove] = get_idx_with_few_occurences(y, n)
-
-    return (X, y)
+def get_class_indices_with_enough_occurence(y, n=70):
+    return [i for i, _ in enumerate(get_all_labels()) if np.sum(y[:, i]) >= n]

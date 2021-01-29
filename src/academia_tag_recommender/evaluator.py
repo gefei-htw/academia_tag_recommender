@@ -1,5 +1,6 @@
 """This module handles evaluations."""
 from sklearn.metrics import hamming_loss as hamming_loss_score, accuracy_score, precision_score, recall_score, f1_score
+import numpy as np
 
 
 class Evaluator:
@@ -41,6 +42,15 @@ class Evaluator:
             'micro', '', '', self.precision_micro, self.recall_micro, self.f1_micro))
         print('{:<15}{:<25}{:<25}{:<25}{:<25}{:<25}'.format(
             'macro', '', '', self.precision_macro, self.recall_macro, self.f1_macro))
+
+    def as_array(self):
+        return [self.hamming_loss, self.accuracy, self.precision_samples, self.recall_samples, self.f1_samples, self.precision_micro, self.recall_micro, self.f1_micro, self.precision_macro, self.recall_macro, self.f1_macro]
+
+    def sum(self):
+        return np.sum(self.as_array())
+
+    def average(self):
+        return np.average(self.as_array())
 
     def __str__(self):
         return ''
