@@ -69,7 +69,7 @@ class ClasswiseClassifier:
         prediction = []
         for path in self._clfs:
             clf = load(path)
-            prediction.append(clf[0].predict(X))
+            prediction.append(clf.predict(X))
         return np.transpose(prediction)
 
     def _dump_clf(self, clf, i):
