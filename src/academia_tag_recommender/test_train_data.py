@@ -16,7 +16,6 @@ texts = [document.text for document in documents]
 
 def get_test_train_data(X, y, split=0.25, multi=True):
 
-    print(y.shape)
     if multi:
         label_indices = get_class_indices_with_enough_occurence(y)
         y = np.array([[column for i, column in enumerate(
@@ -24,9 +23,9 @@ def get_test_train_data(X, y, split=0.25, multi=True):
     else:
         y = y[:, 7]
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=split, random_state=0)
-    #X_train, X_test, y_train, y_test = iterative_train_test_split(X, y, test_size=split)
+    # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = split, random_state = 0)
+    X_train, y_train, X_test, y_test = iterative_train_test_split(
+        X, y, test_size=split)
     X_train, X_test = scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
