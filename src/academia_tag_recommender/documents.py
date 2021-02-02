@@ -1,8 +1,4 @@
 """Handles documents."""
-import nltk
-import matplotlib.pyplot as plt
-import numpy as np
-from academia_tag_recommender.data import questions
 
 
 class Document:
