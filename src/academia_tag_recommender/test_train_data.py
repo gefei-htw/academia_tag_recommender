@@ -5,7 +5,7 @@ from academia_tag_recommender.definitions import MODELS_PATH
 from academia_tag_recommender.vectorizer_computation import get_vect_feat_with_params
 from academia_tag_recommender.data import documents
 from sklearn.preprocessing import MultiLabelBinarizer
-from skmultilearn.model_selection import iterative_train_test_split
+from skmultilearn.model_selection import IterativeStratification
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MaxAbsScaler
 
@@ -29,6 +29,17 @@ def get_test_train_data(X, y, split=0.25, multi=True):
     X_train, X_test = scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
+
+
+def iterative_train_test_split(X, y, test_size):
+    stratifier = IterativeStratification(
+        n_splits=2, order=2, sample_distribution_per_fold=[test_size, 1.0-test_size], random_state=0)
+    train_indexes, test_indexes = next(stratifier.split(X, y))
+
+    X_train, y_train = X[train_indexes, :], y[train_indexes, :]
+    X_test, y_test = X[test_indexes, :], y[test_indexes, :]
+
+    return X_train, y_train, X_test, y_test
 
 
 def get_X_y(vectorizer, tokenizer, preprocessor, stopwords, n_grams):
@@ -62,8 +73,12 @@ def get_y():
     return y
 
 
-def get_all_labels():
+def get_all_labels(reduced=True):
     mlb, _ = fit_labels()
+    if reduced:
+        y = get_y()
+        y_indices = get_class_indices_with_enough_occurence(y)
+        return get_labels(y_indices)
     return mlb.classes_
 
 
@@ -85,4 +100,4 @@ def scale(train, test):
 
 
 def get_class_indices_with_enough_occurence(y, n=70):
-    return [i for i, _ in enumerate(get_all_labels()) if np.sum(y[:, i]) >= n]
+    return [i for i, _ in enumerate(get_all_labels(False)) if np.sum(y[:, i]) >= n]

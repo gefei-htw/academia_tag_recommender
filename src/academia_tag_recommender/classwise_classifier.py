@@ -2,12 +2,11 @@
 from academia_tag_recommender.definitions import MODELS_PATH
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import make_scorer, roc_auc_score, accuracy_score
+from sklearn.metrics import make_scorer, accuracy_score
 from sklearn.model_selection import StratifiedKFold
 from joblib import dump, load
 from pathlib import Path
 import numpy as np
-import time
 
 DATA_FOLDER = Path(MODELS_PATH) / 'classifier' / 'multi-label' / 'classwise'
 
