@@ -36,9 +36,12 @@ List of features ready and TODOs for future development
 * [Classifier creation](notebooks/4.0-me-classification.ipynb)
 * [Classifier evaluation](notebooks/5.0-me-evaluation.ipynb)
 * [Problem transformation](notebooks/6.0-me-problem-transformation.ipynb) _in progress_
+* [Algorithm adaption](notebooks/7.0-me-algorithm-adaption.ipynb) _in progress_
+* [Classifier ensembles](notebooks/8.0-me-ensemble.ipynb) _in progress_
 
 To-Do:
-* Multi-label classifier (algorithm adaption, ensemble)
+* Multi-label classifier
+* Embedding
 * Tag recommendation
 
 ## Status
