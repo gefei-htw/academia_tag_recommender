@@ -14,19 +14,18 @@ data_folder = Path(MODELS_PATH + '/dimension_reduction')
 texts = [document.text for document in documents]
 
 
-def get_test_train_data(X, y, split=0.25, multi=True):
+def get_test_train_data(X, y, split=0.25, multi=True, scale=True, reduce_y=True):
 
-    if multi:
-        label_indices = get_class_indices_with_enough_occurence(y)
-        y = np.array([[column for i, column in enumerate(
-            row) if i in label_indices] for row in y])
-    else:
+    if not multi:
         y = y[:, 7]
+    elif reduce_y:
+        y = get_y_reduced(y)
 
     # X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = split, random_state = 0)
     X_train, y_train, X_test, y_test = iterative_train_test_split(
         X, y, test_size=split)
-    X_train, X_test = scale(X_train, X_test)
+    if scale:
+        X_train, X_test = scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
 
@@ -71,6 +70,14 @@ def fit_labels():
 def get_y():
     _, y = fit_labels()
     return y
+
+
+def get_y_reduced(y=None):
+    if y is None:
+        y = get_y()
+    label_indices = get_class_indices_with_enough_occurence(y)
+    return np.array([[column for i, column in enumerate(
+        row) if i in label_indices] for row in y])
 
 
 def get_all_labels(reduced=True):

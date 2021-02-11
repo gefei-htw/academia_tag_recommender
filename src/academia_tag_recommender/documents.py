@@ -18,7 +18,7 @@ class Document:
         """Constructor method"""
         self.title = title
         self.body = body
-        self.text = title + body
+        self.text = title + ' ' + body
         self.tags = _format_tags(tags)
 
     def __repr__(self):
