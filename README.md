@@ -35,13 +35,15 @@ List of features ready and TODOs for future development
 * [Dimensionality reduction](notebooks/3.0-me-dimensionality-reduction.ipynb)
 * [Classifier creation](notebooks/4.0-me-classification.ipynb)
 * [Classifier evaluation](notebooks/5.0-me-evaluation.ipynb)
-* [Problem transformation](notebooks/6.0-me-problem-transformation.ipynb) _in progress_
-* [Algorithm adaption](notebooks/7.0-me-algorithm-adaption.ipynb) _in progress_
-* [Classifier ensembles](notebooks/8.0-me-ensemble.ipynb) _in progress_
+* [Problem transformation](notebooks/6.0-me-problem-transformation.ipynb)
+* [Algorithm adaption](notebooks/7.0-me-algorithm-adaption.ipynb)
+* [Classifier ensembles](notebooks/8.0-me-ensemble.ipynb)
+* [Classification using Word2Vec Embedding](notebooks/9.0-me-classification-word2vec.ipynb) _in progress_
+* [Classification using Doc2Vec Embedding](notebooks/9.1-me-classification-doc2vec.ipynb) _in progress_
+* [Classification using Fasttext Embedding](notebooks/9.2-me-classification-fasttext.ipynb) _in progress_
 
 To-Do:
-* Multi-label classifier
-* Embedding
+* Embedding _in progress_
 * Tag recommendation
 
 ## Status
