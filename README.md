@@ -41,6 +41,7 @@ List of features ready and TODOs for future development
 * [Classification using Word2Vec Embedding](notebooks/9.0-me-classification-word2vec.ipynb) _in progress_
 * [Classification using Doc2Vec Embedding](notebooks/9.1-me-classification-doc2vec.ipynb) _in progress_
 * [Classification using Fasttext Embedding](notebooks/9.2-me-classification-fasttext.ipynb) _in progress_
+* [Classification using classwise undersampling](notebooks/10.0-me-undersampling.ipynb)
 
 To-Do:
 * Embedding _in progress_
