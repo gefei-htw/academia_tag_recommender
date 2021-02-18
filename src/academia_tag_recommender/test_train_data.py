@@ -25,7 +25,7 @@ def get_test_train_data(X, y, split=0.25, multi=True, scale=True, reduce_y=True)
     X_train, y_train, X_test, y_test = iterative_train_test_split(
         X, y, test_size=split)
     if scale:
-        X_train, X_test = scale(X_train, X_test)
+        X_train, X_test = _scale(X_train, X_test)
 
     return X_train, X_test, y_train, y_test
 
@@ -99,7 +99,7 @@ def get_label(i):
     return mlb.classes_[i]
 
 
-def scale(train, test):
+def _scale(train, test):
     scaler = MaxAbsScaler().fit(train)
     train = scaler.transform(train)
     test = scaler.transform(test)
