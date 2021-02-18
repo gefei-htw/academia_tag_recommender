@@ -1,4 +1,5 @@
 """This module handles classifier calculation."""
+from academia_tag_recommender.classwise_classifier import ClasswiseClassifier
 from academia_tag_recommender.evaluator import Evaluator
 from academia_tag_recommender.definitions import MODELS_PATH
 from joblib import dump
@@ -21,6 +22,8 @@ class Classifier:
     """
 
     def __init__(self, classifier, preprocessing, name_prefix=False):
+        if isinstance(classifier, ClasswiseClassifier):
+            classifier.set_name(name_prefix)
         self.classifier = classifier
         self.preprocessing = preprocessing
         self.name_prefix = name_prefix
@@ -70,5 +73,4 @@ class Classifier:
         return path
 
     def __str__(self):
-        # TODO: change False to self.name_prefix
         return self.name_prefix if hasattr(self, 'name_prefix') and self.name_prefix else str(self.classifier).replace(' ', '').replace('\n', '')
