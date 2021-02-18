@@ -43,14 +43,14 @@ class Evaluator:
         print('{:<15}{:<25}{:<25}{:<25}{:<25}{:<25}'.format(
             'macro', '', '', self.precision_macro, self.recall_macro, self.f1_macro))
 
-    def as_array(self):
-        return [self.hamming_loss, self.accuracy, self.precision_samples, self.recall_samples, self.f1_samples, self.precision_micro, self.recall_micro, self.f1_micro, self.precision_macro, self.recall_macro, self.f1_macro]
+    def scores_as_array(self):
+        return [self.accuracy, self.precision_samples, self.recall_samples, self.f1_samples, self.precision_micro, self.recall_micro, self.f1_micro, self.precision_macro, self.recall_macro, self.f1_macro]
 
     def sum(self):
-        return np.sum(self.as_array())
+        return np.sum(self.scores_as_array())
 
     def average(self):
-        return np.average(self.as_array())
+        return np.average(self.scores_as_array())
 
     def __str__(self):
         return ''
