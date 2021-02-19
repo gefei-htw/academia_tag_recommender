@@ -13,8 +13,11 @@ def _path(subfolder=False):
     return DATA_FOLDER / subfolder if subfolder else DATA_FOLDER
 
 
-def available_classifier_paths(subfolder=False):
-    return list(_path(subfolder).glob('*.joblib'))
+def available_classifier_paths(subfolder=False, recursive=False):
+    if recursive:
+        return list(_path(subfolder).glob('**/*.joblib'))
+    else:
+        return list(_path(subfolder).glob('*.joblib'))
 
 
 class Classifier:
