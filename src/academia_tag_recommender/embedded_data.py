@@ -82,21 +82,23 @@ def _word_averaging_list(wv, samples):
     return np.vstack([_word_averaging(wv, sample) for sample in samples])
 
 
-def word2vec(X_train, X_test, vector_size=100):
+def word2vec(X_train, X_test, vector_size=100, sg=False):
     X_train_word2sen = Word2Tok(X_train, flat=False)
     X_train_word2tok = Word2Tok(X_train)
     X_test_word2tok = Word2Tok(X_test)
 
-    wv = _get_word2vec_wv(X_train_word2sen, vector_size)
+    wv = _get_word2vec_wv(X_train_word2sen, vector_size, sg)
     return _word_averaging_list(wv, X_train_word2tok), _word_averaging_list(wv, X_test_word2tok)
 
 
-def _get_word2vec_wv(sentences, vector_size):
-    path = WORD2VEC_MODEL_PATH / ('vectorizer' + str(vector_size) + '.model')
+def _get_word2vec_wv(sentences, vector_size, skip_gram):
+    sg = 1 if skip_gram else 0
+    path = WORD2VEC_MODEL_PATH / \
+        (str(sg) + 'vectorizer' + str(vector_size) + '.model')
     if Path.is_file(path):
         model = Word2Vec.load(str(path))
     else:
-        model = Word2Vec(sentences=sentences, size=vector_size)
+        model = Word2Vec(sentences=sentences, size=vector_size, sg=sg)
         model.save(str(path))
     wv = model.wv
     wv.init_sims(replace=True)
