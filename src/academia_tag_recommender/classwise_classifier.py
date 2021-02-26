@@ -22,10 +22,11 @@ class ClasswiseClassifier:
     """This classifier model holds the actual classifier, along with evaluation statistics.
     """
 
-    def __init__(self, classifier_options, folder_path):
+    def __init__(self, classifier_options, folder_path, undersample=False):
         self.classifier_options = classifier_options
         self.path = DATA_FOLDER / folder_path
         Path.mkdir(self.path, exist_ok=True)
+        self.undersample = undersample
 
     def set_name(self, name):
         self.name = name
@@ -39,7 +40,10 @@ class ClasswiseClassifier:
         self._clfs = []
         for y_i, _ in enumerate(y[0]):
             y_train = y[:, y_i]
-            X_sample, y_sample = self._undersample(X, y_train)
+            if self.undersample:
+                X_sample, y_sample = self._undersample(X, y_train)
+            else:
+                X_sample, y_sample = X, y_train
             clf = self._choose_classifier(X_sample, y_sample)
             path = self._dump_clf(clf, y_i)
             self._clfs.append(path)
