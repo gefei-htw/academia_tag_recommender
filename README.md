@@ -37,11 +37,18 @@ List of features ready and TODOs for future development
     3. [Dimensionality reduction](notebooks/2.3-me-dimensionality-reduction.ipynb)
 3. [Evaluation metrics](notebooks/3.0-me-evaluation-metrics.ipynb)
 4. [Classification](notebooks/4.0-me-classification.ipynb) _in progress_
-    1. [Classification using BoW](notebooks/4.1-me-classification-bow.ipynb)
+    1. Classification using Bag Of Words
+        1. [Classification using Tfidf](notebooks/4.1.0-me-classification-bow.ipynb)
+        2. [Classification using Count](notebooks/4.2.1-me-classification-count.ipynb)
     2. [Classification using Word2Vec Embedding](notebooks/4.2-me-classification-word2vec.ipynb)
     3. [Classification using Doc2Vec Embedding](notebooks/4.3-me-classification-doc2vec.ipynb)
     4. [Classification using Fasttext Embedding](notebooks/4.4-me-classification-fasttext.ipynb)
-    5. [Classification using classwise undersampling](notebooks/4.5-me-undersampling.ipynb)
+    5. Classwise Classification
+        1. [Basic Classwise Classification](notebooks/4.5.0-me-classwise.ipynb)
+        2. [Classwise Classification using classwise gridsearch](notebooks/4.5.1-me-gridsearch.ipynb)
+        3. [Classwise Classification using classwise undersampling](notebooks/4.5.2-me-classwise-undersampling.ipynb)
+        4. [Classwise Classification using classwise undersampling and gridsearch](notebooks/4.5.3-me-undersampling-gridsearch.ipynb)
+        5. [Classwise Classification using classwise multiple](notebooks/4.5.4-me-classwise-multiple.ipynb)
 5. [Performance comparison](notebooks/5.0-me-performance-comparison.ipynb) _in progress_
 
 To-Do:
