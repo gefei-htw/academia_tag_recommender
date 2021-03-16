@@ -2,19 +2,19 @@
 from academia_tag_recommender.definitions import MODELS_PATH
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import make_scorer, f1_score
+from sklearn.metrics import make_scorer, f1_score, recall_score
 from sklearn.model_selection import StratifiedKFold
 from joblib import dump, load
 from pathlib import Path
 import random
 import numpy as np
 
-DATA_FOLDER = Path(MODELS_PATH) / 'classifier' / 'multi-label' / 'classwise'
+DATA_FOLDER = Path(MODELS_PATH) / 'experimental_classifier' / 'classwise'
 
 SAMPLE_RATIO = 1 / 25
 RANDOM_STATE = 0
 random.seed(RANDOM_STATE)
-scorer = make_scorer(f1_score)
+scorer = make_scorer(recall_score)
 k_fold = StratifiedKFold(shuffle=True, random_state=RANDOM_STATE)
 
 
@@ -22,14 +22,12 @@ class ClasswiseClassifier:
     """This classifier model holds the actual classifier, along with evaluation statistics.
     """
 
-    def __init__(self, classifier_options, folder_path, undersample=False):
+    def __init__(self, name, classifier_options, folder_path, undersample=False):
+        self.name = name
         self.classifier_options = classifier_options
         self.path = DATA_FOLDER / folder_path
         Path.mkdir(self.path, exist_ok=True)
         self.undersample = undersample
-
-    def set_name(self, name):
-        self.name = name
 
     def fit(self, X, y):
         """Fit classifier to given data.
@@ -85,7 +83,7 @@ class ClasswiseClassifier:
 
     def _score_clf(self, clf, X, y):
         prediction = clf.predict(X)
-        score = f1_score(y, prediction)
+        score = recall_score(y, prediction)
         return score
 
     def _dump_clf(self, clf, i):

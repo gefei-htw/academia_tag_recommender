@@ -60,6 +60,22 @@ def get_X_reduced(prepocessing_definition):
     return X
 
 
+def get_vectorizer(preprocessing_definition):
+    stopwords = 'yes' if preprocessing_definition.stopwords else 'none'
+    n_gram_option = preprocessing_definition.n_gram.split(',')
+    n_grams = (int(n_gram_option[0]), int(n_gram_option[1]))
+    [vectorizer, _] = get_vect_feat_with_params(
+        texts, preprocessing_definition.vectorizer.class_, preprocessing_definition.tokenizer.class_, preprocessing_definition.preprocessor.class_, stopwords, n_grams)
+    return vectorizer
+
+
+def get_dimension_reducer(prepocessing_definition):
+    file_name = str(prepocessing_definition) + '.joblib'
+    path = data_folder / file_name
+    reducer, _ = load(path)
+    return reducer
+
+
 def fit_labels():
     label = [document.tags for document in documents]
     mlb = MultiLabelBinarizer()
