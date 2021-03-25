@@ -30,27 +30,27 @@ $ python setup.py install
 
 ## Features
 List of features ready and TODOs for future development
-1. [Initital data analysis](notebooks/1.0-me-initial-data-exploration.ipynb)
-2. [Document representation](notebooks/2.0-me-document-representation.ipynb)
-    1. [Bag of words](notebooks/2.1-me-bag-of-words.ipynb)
-    2. [Embedding](notebooks/2.2-embedding.ipynb)
-    3. [Dimensionality reduction](notebooks/2.3-me-dimensionality-reduction.ipynb)
-3. [Evaluation metrics](notebooks/3.0-me-evaluation-metrics.ipynb)
-4. [Classification](notebooks/4.0-me-classification.ipynb) _in progress_
-    1. Classification using Bag Of Words
-        1. [Classification using Tfidf](notebooks/4.1.0-me-classification-bow.ipynb)
-        2. [Classification using Count](notebooks/4.2.1-me-classification-count.ipynb)
-    2. [Classification using Word2Vec Embedding](notebooks/4.2-me-classification-word2vec.ipynb)
-    3. [Classification using Doc2Vec Embedding](notebooks/4.3-me-classification-doc2vec.ipynb)
-    4. [Classification using Fasttext Embedding](notebooks/4.4-me-classification-fasttext.ipynb)
-    5. Classwise Classification
-        1. [Basic Classwise Classification](notebooks/4.5.0-me-classwise.ipynb)
-        2. [Classwise Classification using classwise gridsearch](notebooks/4.5.1-me-gridsearch.ipynb)
-        3. [Classwise Classification using classwise undersampling](notebooks/4.5.2-me-classwise-undersampling.ipynb)
-        4. [Classwise Classification using classwise undersampling and gridsearch](notebooks/4.5.3-me-undersampling-gridsearch.ipynb)
-        5. [Classwise Classification using classwise multiple](notebooks/4.5.4-me-classwise-multiple.ipynb)
-5. [Performance comparison](notebooks/5.0-me-performance-comparison.ipynb) _in progress_
-6. [Recommendation](notebooks/6.0-me-recommender.ipynb) _in progress_
+1.	[Initital data analysis](notebooks/1.0-me-initial-data-exploration.ipynb)
+2.	[Document representation](notebooks/2.0-me-document-representation.ipynb)
+    1.	[Bag of words](notebooks/2.1-me-bag-of-words.ipynb)
+    2.	[Embedding](notebooks/2.2-embedding.ipynb)
+    3.	[Dimensionality reduction](notebooks/2.3-me-dimensionality-reduction.ipynb)
+3.	[Evaluation metrics](notebooks/3.0-me-evaluation-metrics.ipynb)
+4.	[Classification](notebooks/4.0-me-classification.ipynb) _in progress_
+    1.	[Tfidf](notebooks/4.1-me-classification-bow.ipynb)
+    2.	[Count](notebooks/4.2-me-classification-count.ipynb)
+    3.	[Word2Vec](notebooks/4.3-me-classification-word2vec.ipynb)
+    4.	[Doc2Vec](notebooks/4.4-me-classification-doc2vec.ipynb)
+    5.	[Fasttext](notebooks/4.5-me-classification-fasttext.ipynb)
+    6.	[Basic Classwise Classification](notebooks/4.6.0-me-classwise.ipynb)
+        1.	[Classwise Classification using gridsearch](notebooks/4.6.1-me-gridsearch.ipynb)
+        2.	[Classwise Classification using undersampling](notebooks/4.6.2-me-classwise-undersampling.ipynb)
+        3.	[Classwise Classification using undersampling and gridsearch](notebooks/4.6.3-me-undersampling-gridsearch.ipynb)
+        4.	[Classwise Classification using multiple base classifiers](notebooks/4.6.4-me-classwise-multiple.ipynb)
+5.	[Performance comparison](notebooks/5.0-me-performance-comparison.ipynb) _in progress_
+6.	[Recommendation](notebooks/6.0-me-recommender.ipynb) _in progress_
+
+
 
 ## Status
 Project is: _in progress_
