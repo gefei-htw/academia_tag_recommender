@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from joblib import dump, load
+import numpy as np
 import time
 
 from academia_tag_recommender.evaluator import Evaluator
@@ -41,6 +42,7 @@ class ExperimentalClassifier:
             pass
         else:
             start = time.time()
+            X = np.array(X)
             self.classifier.fit(X, y)
             end = time.time()
             self.training_time = end - start
@@ -48,6 +50,7 @@ class ExperimentalClassifier:
 
     def score(self, X, y):
         start = time.time()
+        X = np.array(X)
         prediction = self.classifier.predict(X)
         end = time.time()
         self.test_time = end - start
