@@ -1,10 +1,10 @@
-
 import os
 from pathlib import Path
 from joblib import dump, load
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from gensim.models import Word2Vec, Doc2Vec, FastText
-from academia_tag_recommender.embedded_data import Doc2Tagged, Word2Tok, doc2vector, get_doc2vec_model, get_fasttext_wv, get_word2vec_wv, word_averaging_list
+from gensim.models.phrases import Phrases
+from academia_tag_recommender.embedded_data import Doc2Tagged, Word2Tok, doc2vector, word_averaging_list
 from academia_tag_recommender.preprocessor import BasicPreprocessor
 from academia_tag_recommender.stopwords import stopwordlist
 from academia_tag_recommender.tokenizer import BasicTokenizer, EnglishStemmer, Lemmatizer
@@ -92,12 +92,6 @@ class BagOfWordsTransformer(Transformer):
         else:
             return self.transform(X)
 
-    # def path(self):
-    #    self.path = BagOfWordsTransformer._to_path(
-    #        self.vectorizer_short_name, self.tokenizer_short_name, self.dimension_reduction_short_name)
-    #    dump(self, self.path)
-    #    return self.path
-
     def transform(self, X):
         features = self.vectorizer.transform(X)
         return self.dimension_reduction.transform(features)
@@ -128,18 +122,20 @@ class EmbeddingTransformer(Transformer):
     def __str__(self):
         return 'v={}&size={}'.format(self.vectorizer_short_name, self.vector_size)
 
-    def fit(self, X):
+    def fit(self, X, bigramify=False):
         if not hasattr(self, 'vectorizer'):
-            self._prepare(X)
+            self._prepare(X, bigramify)
         transformed = self.transform(X)
         dump(self, self.path)
         return transformed
 
-    def _prepare(self, X):
+    def _prepare(self, X, bigramify):
         raise NotImplementedError
 
-    def transform(self, X):
+    def transform(self, X, bigramify=False):
         X = [[x] for x in X]
+        if bigramify:
+            X = self.bigram_transformer[X]
         X_word2tok = Word2Tok(X)
         return word_averaging_list(self.vectorizer, X_word2tok)
 
@@ -159,9 +155,12 @@ class EmbeddingTransformer(Transformer):
 
 class Word2VecTransformer(EmbeddingTransformer):
 
-    def _prepare(self, X):
+    def _prepare(self, X, bigramify):
         X = [[x] for x in X]
         sentences = Word2Tok(X, flat=False)
+        if bigramify:
+            self.bigram_transformer = Phrases(sentences, min_count=1)
+            sentences = self.bigram_transformer[sentences]
         model = Word2Vec(sentences=sentences, size=self.vector_size)
         self.vectorizer = model.wv
         del model
@@ -170,9 +169,12 @@ class Word2VecTransformer(EmbeddingTransformer):
 
 class FastTextTransformer(EmbeddingTransformer):
 
-    def _prepare(self, X):
+    def _prepare(self, X, bigramify):
         X = [[x] for x in X]
         sentences = Word2Tok(X, flat=False)
+        if bigramify:
+            self.bigram_transformer = Phrases(sentences, min_count=1)
+            sentences = self.bigram_transformer[sentences]
         model = FastText(size=self.vector_size, window=3, min_count=2)
         model.build_vocab(sentences=sentences)
         model.train(sentences=sentences,
