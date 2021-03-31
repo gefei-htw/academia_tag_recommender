@@ -27,7 +27,7 @@ class EnglishStemmer:
         :rtype: list(str)
         """
 
-    def __self__(self):
+    def __init__(self):
         self.tokenizer = BasicTokenizer()
 
     def __call__(self, text):
@@ -45,7 +45,7 @@ class PorterStemmer:
         :rtype: list(str)
         """
 
-    def __self__(self):
+    def __init__(self):
         self.tokenizer = BasicTokenizer()
 
     def __call__(self, text):
@@ -63,7 +63,7 @@ class LancasterStemmer:
         :rtype: list(str)
         """
 
-    def __self__(self):
+    def __init__(self):
         self.tokenizer = BasicTokenizer()
 
     def __call__(self, text):
@@ -81,7 +81,7 @@ class Lemmatizer:
         :rtype: list(str)
         """
 
-    def __self__(self):
+    def __init__(self):
         self.tokenizer = BasicTokenizer()
 
     def __call__(self, text):
