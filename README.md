@@ -1,6 +1,6 @@
 # academia_tag_recommender
 
-Tag Recommender for [academia.stackexchange.com](https://academia.stackexchange.com/)
+Tag Generator for [academia.stackexchange.com](https://academia.stackexchange.com/)
 
 ## Table of contents
 * [Description](#description)
@@ -11,7 +11,7 @@ Tag Recommender for [academia.stackexchange.com](https://academia.stackexchange.
 
 ## Description
 
-This project aims to recommend tags for questions based on the data from the [academia.stackexchange.com](https://academia.stackexchange.com/)
+This project aims to generate tags for questions based on the data from the [academia.stackexchange.com](https://academia.stackexchange.com/)
  datadump from [archive.org](https://archive.org/details/stackexchange)
  
  The project structure was setup using [pyscaffoldext-dsproject](https://github.com/pyscaffold/pyscaffoldext-dsproject).
@@ -48,7 +48,7 @@ List of features ready and TODOs for future development
         3.	[Classwise Classification using undersampling and gridsearch](notebooks/4.6.3-me-undersampling-gridsearch.ipynb)
         4.	[Classwise Classification using multiple base classifiers](notebooks/4.6.4-me-classwise-multiple.ipynb)
 5.	[Performance comparison](notebooks/5.0-me-performance-comparison.ipynb) _in progress_
-6.	[Recommendation](notebooks/6.0-me-recommender.ipynb) _in progress_
+6.	[Tag Generator](notebooks/6.0-me-generator.ipynb) _in progress_
 
 
 
