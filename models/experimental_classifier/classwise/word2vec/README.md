@@ -1,0 +1,1 @@
+Folder for classwise classifiers using word2vec transformation

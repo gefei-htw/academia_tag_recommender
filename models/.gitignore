@@ -1,4 +1,4 @@
-# Ignore everything in this directory
-*
+# Ignore every dump in this directory
+*.joblib
 # Except this file
 !.gitignore
