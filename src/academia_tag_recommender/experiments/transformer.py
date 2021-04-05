@@ -4,9 +4,9 @@ from joblib import dump, load
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from gensim.models import Word2Vec, Doc2Vec, FastText
 from gensim.models.phrases import Phrases
-from academia_tag_recommender.embedded_data import Doc2Tagged, Word2Tok, doc2vector, word_averaging_list
-from academia_tag_recommender.preprocessor import BasicPreprocessor
 from academia_tag_recommender.stopwords import stopwordlist
+from academia_tag_recommender.embeddings import Doc2Tagged, Word2Tok, doc2vector, word_averaging_list
+from academia_tag_recommender.preprocessor import BasicPreprocessor
 from academia_tag_recommender.tokenizer import BasicTokenizer, EnglishStemmer, Lemmatizer
 from sklearn.decomposition import TruncatedSVD
 from academia_tag_recommender.definitions import MODELS_PATH

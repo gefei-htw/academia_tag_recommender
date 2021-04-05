@@ -4,10 +4,10 @@ import numpy as np
 import os
 from sklearn.preprocessing import MultiLabelBinarizer
 from skmultilearn.model_selection import IterativeStratification
-from academia_tag_recommender.data import documents
-from academia_tag_recommender.definitions import MODELS_PATH
+from academia_tag_recommender.source import documents
+from academia_tag_recommender.definitions import DATA_PATH
 
-PATH = Path(MODELS_PATH) / 'experimental_data.joblib'
+PATH = Path(DATA_PATH) / 'preprocessed' / 'experimental_data.joblib'
 MIN_OCCURENCE = 70
 
 

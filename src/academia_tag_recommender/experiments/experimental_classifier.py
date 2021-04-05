@@ -6,7 +6,6 @@ import time
 
 from academia_tag_recommender.evaluator import Evaluator
 from academia_tag_recommender.definitions import MODELS_PATH
-from academia_tag_recommender.experiments.transformer import Transformer
 
 PATH = Path(MODELS_PATH) / 'experimental_classifier'
 

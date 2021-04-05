@@ -1,0 +1,9 @@
+{
+    "python.pythonPath": "C:\\Users\\Monique\\anaconda3\\python.exe",
+    "terminal.integrated.shellArgs.windows": [
+        "/K",
+        "C:\\Users\\Monique\\anaconda3\\Scripts\\activate.bat C:\\Users\\Monique\\anaconda3 & conda activate base"
+    ],
+    "restructuredtext.languageServer.disabled": true,
+    "restructuredtext.preview.sphinx.disabled": true
+}

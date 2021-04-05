@@ -2,7 +2,7 @@
 from academia_tag_recommender.definitions import MODELS_PATH
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import make_scorer, f1_score, recall_score
+from sklearn.metrics import make_scorer, recall_score
 from sklearn.model_selection import StratifiedKFold
 from joblib import dump, load
 from pathlib import Path
