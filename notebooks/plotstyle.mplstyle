@@ -1,0 +1,21 @@
+### AXES
+axes.axisbelow: True
+axes.grid: True
+axes.grid.which: both
+axes.prop_cycle: cycler('color', ['tab:green', 'tab:orange', 'tab:blue', 'tab:red', 'tab:purple'])
+
+### FIGURE
+figure.figsize: 12, 8
+
+### FONTS
+font.size: 16
+
+### GRID
+grid.color: gainsboro
+grid.linewidth: 0.5
+
+### LINES
+lines.linestyle: -
+lines.linewidth: 0.3
+lines.marker: o
+lines.markersize: 2.0
