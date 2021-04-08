@@ -1,17 +1,11 @@
-"""Handles documents."""
-
-
 class Document:
     """This is a class representation of a document.
 
-    :param title: The documents title
-    :type title: str
-    :param body: The documents body
-    :type body: str
-    :param text: A combination of the documents title and body
-    :type text: str
-    :param tags: A list of the documents tags
-    :type tags: list(str)
+    Attributes:
+        title: The documents title as string.
+        body: The documents body as string.
+        text: A combination of the documents title and body as string.
+        tags: A list of the documents tags as list of strings.
     """
 
     def __init__(self, title, body, tags):
@@ -35,10 +29,14 @@ def _format_tags(tags):
 
     Extracts a list of strings from a string in diamond notation.
 
-    :param tags: Tags in diamond notation as one string
-    :type tags: str
-    :return: A list of tags
-    :rtype: list(str)
+    Args:
+        tags: Tags in diamond notation as one string.
+
+    Returns: 
+        A list of tags as list of strings.
+        Example:
+
+        ['publications', 'online-publications]
     """
     tags_ = tags.replace('<', '').split('>')
     return tags_[0:(len(tags_)-1)]

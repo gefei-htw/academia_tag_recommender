@@ -1,4 +1,14 @@
-"""Handles data imports."""
+"""Handles data dump imports.
+
+Attributes:
+    tags: The tags from the data dump.
+    users: The users from the data dump.
+    posts: The posts from the data dump.
+    questions: The questions from the data dump. Questions are posts with PostTypeId == 1-
+    documents: The documents from the data dump as :class:`list` of :class:`academia_tag_recommender.documents.Document`.
+    comments: The comments from the data dump.
+    votes: The votes from the data dump.
+"""
 from pathlib import Path
 import xml.etree.ElementTree as ET
 from academia_tag_recommender.documents import Document

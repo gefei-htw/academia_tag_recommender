@@ -285,4 +285,5 @@ intersphinx_mapping = {
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable', None),
     'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
     'nltk': ('https://www.nltk.org/', None),
+    'gensim': ('https://radimrehurek.com/gensim_3.8.3/', None)
 }

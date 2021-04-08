@@ -36,6 +36,12 @@ DIM_REDUCE_OPTIONS = {
 
 
 class Transformer:
+    """The transformer to represent texts as a vectors.
+
+    Attributes:
+        vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+        vectorizer: The used vectorizer.
+    """
 
     def __init__(self, vectorizer):
         self.vectorizer_short_name = vectorizer
@@ -52,6 +58,14 @@ class Transformer:
 
     @classmethod
     def load(cls, vectorizer_short_name):
+        """Loads an existing Transformer instance from disc or creates new if none exists.
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+
+        Returns:
+            The configured class:`Transformer` instance.
+        """
         path = cls._to_path(vectorizer_short_name)
         if os.path.isfile(path):
             return load(path)
@@ -61,12 +75,38 @@ class Transformer:
 
     @staticmethod
     def _to_path(vectorizer_short_name):
+        """Converts vectorizer name into path name
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+
+        Returns:
+            The Path of the vector as :class:`pathlib.Path`.
+        """
         return PATH / 'v={}.joblib'.format(vectorizer_short_name)
 
 
 class BagOfWordsTransformer(Transformer):
+    """The transformer to represent texts as bag of word vectors.
+
+    Attributes:
+        vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+        vectorizer: The used vectorizer.
+        tokenizer_short_name: The short name of the used tokenizer as :class:`str`.
+        tokenizer: The used tokenizer.
+        dimension_reduction_short_name: The short name of the used dimension reduction as :class:`str`.
+        dimension_reduction: The used dimension reduction.
+        path: The path where the transformer is stored on the disc as :class:`pathlib.Path`.
+    """
 
     def __init__(self, vectorizer, tokenizer, dimension_reduction):
+        """
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+            tokenizer_short_name: The short name of the used tokenizer as :class:`str`.
+            dimension_reduction_short_name: The short name of the used dimension reduction as :class:`str`.
+        """
         self.tokenizer_short_name = tokenizer
         self.tokenizer = TOKENIZER_OPTIONS[tokenizer]
         self.vectorizer_short_name = vectorizer
@@ -82,6 +122,14 @@ class BagOfWordsTransformer(Transformer):
         return 'v={}&t={}&dim_reduce={}'.format(self.vectorizer_short_name, self.tokenizer_short_name, self.dimension_reduction_short_name)
 
     def fit(self, X):
+        """Creates a transformer based on X.
+
+        Args:
+            X: The samples data as :class:`list`.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         self.path = BagOfWordsTransformer._to_path(
             self.vectorizer_short_name, self.tokenizer_short_name, self.dimension_reduction_short_name)
         if not os.path.isfile(self.path):
@@ -93,11 +141,29 @@ class BagOfWordsTransformer(Transformer):
             return self.transform(X)
 
     def transform(self, X):
+        """Transforms X.
+
+        Args:
+            X: The samples data as :class:`list`.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         features = self.vectorizer.transform(X)
         return self.dimension_reduction.transform(features)
 
     @classmethod
     def load(cls, vectorizer_short_name, tokenizer_short_name, dimension_reduction_short_name):
+        """Loads an existing BagOfWordsTransformer instance from disc or creates new if none exists.
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+            tokenizer_short_name: The short name of the used tokenizer as :class:`str`.
+            dimension_reduction_short_name: The short name of the used dimension reduction as :class:`str`.
+
+        Returns:
+            The configured :class:`BagOfWordsTransformer` instance.
+        """
         path = cls._to_path(
             vectorizer_short_name, tokenizer_short_name, dimension_reduction_short_name)
         if os.path.isfile(path):
@@ -109,10 +175,26 @@ class BagOfWordsTransformer(Transformer):
 
     @staticmethod
     def _to_path(vectorizer_short_name, tokenizer_short_name, dimension_reduction_short_name):
+        """Converts vectorizer name, tokenizer name and dimensionreduction name into path name.
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+            tokenizer_short_name: The short name of the used tokenizer as :class:`str`.
+            dimension_reduction_short_name: The short name of the used dimension reduction as :class:`str`.
+
+        Returns:
+            The Path as :class:`pathlib.Path`.
+        """
         return PATH / 'v={}&t={}&dim_reduce={}.joblib'.format(vectorizer_short_name, tokenizer_short_name, dimension_reduction_short_name)
 
 
 class EmbeddingTransformer(Transformer):
+    """The transformer to represent texts as embedding vectors.
+
+    Attributes:
+        vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+        path: The path where the transformer is stored on the disc as :class:`pathlib.Path`.
+    """
 
     def __init__(self, vectorizer, vector_size=100):
         self.vectorizer_short_name = vectorizer
@@ -123,6 +205,15 @@ class EmbeddingTransformer(Transformer):
         return 'v={}&size={}'.format(self.vectorizer_short_name, self.vector_size)
 
     def fit(self, X, bigramify=False):
+        """Creates a transformer based on X.
+
+        Args:
+            X: The samples data as :class:`list`.
+            bigramify: If True, bigrams will be included.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         if not hasattr(self, 'vectorizer'):
             self._prepare(X, bigramify)
         transformed = self.transform(X)
@@ -133,6 +224,15 @@ class EmbeddingTransformer(Transformer):
         raise NotImplementedError
 
     def transform(self, X, bigramify=False):
+        """Transforms X.
+
+        Args:
+            X: The samples data as :class:`list`.
+            bigramify: If True, bigrams will be included.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         X = [[x] for x in X]
         if bigramify:
             X = self.bigram_transformer[X]
@@ -141,6 +241,15 @@ class EmbeddingTransformer(Transformer):
 
     @classmethod
     def load(clf, vectorizer_short_name, vector_size=100):
+        """Loads an existing Transformer instance from disc or creates new if none exists.
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+            vector_size: The vector size of resulting vectorizer as :class:`int`.
+
+        Returns:
+            The configured :class:`EmbeddingTransformer` instance.
+        """
         path = clf._to_path(vectorizer_short_name, vector_size)
         if os.path.isfile(path):
             return load(path)
@@ -150,12 +259,33 @@ class EmbeddingTransformer(Transformer):
 
     @staticmethod
     def _to_path(vectorizer_short_name, vector_size):
+        """Converts vectorizer name and vector size into path name.
+
+        Args:
+            vectorizer_short_name: The short name of the used vectorizer as :class:`str`.
+            vector_size: The vector size of resulting vectorizer as :class:`int`.
+
+        Returns:
+            The Path as :class:`pathlib.Path`.
+        """
         return PATH / 'v={}&size={}.joblib'.format(vectorizer_short_name, vector_size)
 
 
 class Word2VecTransformer(EmbeddingTransformer):
+    """The transformer to represent texts as word2vec vectors.
+
+    Attributes:
+        vectorizer: The word2vec vectorizer as :class:`gensim.models.keyedvectors.Word2VecKeyedVectors`.
+        bigram_transformer: The sentence to bigram transformer as :class:`gensim.models.phrases.Phrases`.
+    """
 
     def _prepare(self, X, bigramify):
+        """Trains a word2vec transformer based on X using bigrams if specified.
+
+        Args:
+            X: The samples data as :class:`list`.
+            bigramify: If True, bigrams will be included.
+        """
         X = [[x] for x in X]
         sentences = Word2Tok(X, flat=False)
         if bigramify:
@@ -168,8 +298,21 @@ class Word2VecTransformer(EmbeddingTransformer):
 
 
 class FastTextTransformer(EmbeddingTransformer):
+    """The transformer to represent texts as fasttext vectors.
+
+    Attributes:
+        vectorizer: The word2vec vectorizer as :class:`gensim.models.keyedvectors.FastTextKeyedVectors`.
+        bigram_transformer: The sentence to bigram transformer as :class:`gensim.models.phrases.Phrases`.
+
+    """
 
     def _prepare(self, X, bigramify):
+        """Trains a fasttext transformer based on X using bigrams if specified.
+
+        Args:
+            X: The samples data as :class:`list`.
+            bigramify: If True, bigrams will be included.
+        """
         X = [[x] for x in X]
         sentences = Word2Tok(X, flat=False)
         if bigramify:
@@ -185,8 +328,21 @@ class FastTextTransformer(EmbeddingTransformer):
 
 
 class Doc2VecTransformer(EmbeddingTransformer):
+    """The transformer to represent texts as doc2vec vectors.
+
+    Attributes:
+        vectorizer: The word2vec vectorizer as :class:`gensim.models.doc2vec.Doc2Vec`.
+    """
 
     def _prepare(self, X):
+        """Trains a doc2vec transformer based on X.
+
+        Args:
+            X: The samples data as :class:`list`.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         X = [[x] for x in X]
         tokens = Doc2Tagged(X, tag=True)
         self.vectorizer = Doc2Vec(
@@ -197,6 +353,14 @@ class Doc2VecTransformer(EmbeddingTransformer):
         return doc2vector(self.vectorizer, [sample.words for sample in tokens])
 
     def transform(self, X):
+        """Transforms X.
+
+        Args:
+            X: The samples data as :class:`list`.
+
+        Returns:
+            The transformed samples as :class:`list`.
+        """
         X = [[x] for x in X]
         X_doc2tok = Doc2Tagged(X)
         return doc2vector(self.vectorizer, X_doc2tok)

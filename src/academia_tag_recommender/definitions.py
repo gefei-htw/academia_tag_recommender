@@ -1,3 +1,10 @@
+"""This module holds definitions for folder locations.
+
+Attributes:
+    DATA_PATH: Path to get data from.
+    MODELS_PATH: Path to store models to.
+"""
+
 import os
 
 ROOT_DIR = os.path.dirname(os.path.dirname(

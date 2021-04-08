@@ -4,7 +4,20 @@ import numpy as np
 
 
 class Evaluator:
-    """This evaluator calculates different measures for for given data.
+    """This evaluator calculates different distance measures between given data.
+
+    Attributes:
+        hamming_loss: The hamming loss (the smaller the better) as :class:`float`.
+        accuracy: The accuracy as :class:`float`.
+        precision_samples: The precision averaged over samples as :class:`float`.
+        precision_macro: The precision with macro-averaging as :class:`float`.
+        precision_micro: The precision with micro-averaging as :class:`float`.
+        recall_samples: The recall averaged over samples as :class:`float`.
+        recall_macro: The recall with macro-averaging as :class:`float`.
+        recall_micro: The recall with micro-averaging as :class:`float`.
+        f1_samples: The f1 score averaged over samples as :class:`float`.
+        f1_macro: The f1 score with macro-averaging as :class:`float`.
+        f1_micro: The f1 score with micro-averaging as :class:`float`.
     """
 
     def __init__(self, y, prediction):
@@ -33,7 +46,7 @@ class Evaluator:
             y, prediction, average='micro', zero_division=0)
 
     def print_stats(self):
-        """Print hamming loss, precision, recall and f1 as example-based measures and micro and macro results for precision, recall and f1."""
+        """Prints hamming loss, precision, recall and f1 as example-based measures and micro and macro results for precision, recall and f1."""
         print('{:<15}{:<25}{:<25}{:<25}{:<25}{:<25}'.format('', 'Hamming Loss', 'Accuracy',
                                                                 'Precision', 'Recall', 'F1 '))
         print('{:<15}{:<25}{:<25}{:<25}{:<25}{:<25}'.format('samples', self.hamming_loss,
@@ -44,12 +57,15 @@ class Evaluator:
             'macro', '', '', self.precision_macro, self.recall_macro, self.f1_macro))
 
     def scores_as_array(self):
+        """Returns all score metrics as array"""
         return [self.accuracy, self.precision_samples, self.recall_samples, self.f1_samples, self.precision_micro, self.recall_micro, self.f1_micro, self.precision_macro, self.recall_macro, self.f1_macro]
 
     def sum(self):
+        """Returns sum of all score metrics"""
         return np.sum(self.scores_as_array())
 
     def average(self):
+        """Returns average of all score metrics"""
         return np.average(self.scores_as_array())
 
     def __str__(self):

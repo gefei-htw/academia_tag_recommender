@@ -1,5 +1,4 @@
-"""This module provides functions to print statistic.
-    """
+"""This module provides functions to print statistic."""
 
 import numpy as np
 
@@ -13,8 +12,9 @@ def print_stats(data):
 
     Prints: maximum, third quartile, mean, median, first quartile, minimum, standard deviation and variance
 
-    :param data: The data to evaluate
-    :type data: list(int)
+    Args:
+        data:
+            The data to evaluate as :class:`list` of :class:`int`.
     """
     _print_vals_with_space('Max', np.max(data))
     _print_vals_with_space('Third Quartile', np.percentile(data, 75))
@@ -31,12 +31,13 @@ def print_frequency_stats_in_range(tag_data, start, end):
 
     Prints number of tags in the range (absolute and percentage) and the cumulative usage (absolute and percentage)
 
-    :param tag_data: The tag data to evaluate
-    :type tag_data: list
-    :param start: The first value of the range (exclusive)
-    :type start: int
-    :param end: The last value of the range (inclusive)
-    :type end: int
+    Args:
+        data:
+            The data to evaluate as :class:`list` of :class:`int`.
+        start:
+            The first value of the range (exclusive) as :class:`int`.
+        end:
+            The last value of the range (inclusive) as :class:`int`.
     """
     tag_counts = [int(tag.attrib['Count']) for tag in tag_data]
     tags_in_range = [
@@ -54,10 +55,11 @@ def print_frequency_stats_in_ranges(tag_data, ranges):
 
     Prints number of tags in the range (absolute and percentage) and the cumulative usage (absolute and percentage) for each range
 
-    :param tag_data: The tag data to evaluate
-    :type tag_data: list
-    :param start: The first value of the range (exclusive)
-    :type start: list(tuple(int))
+    Args:
+        data:
+            The data to evaluate as :class:`list` of :class:`int`.
+        ranges:
+            The ranges to evaluate as :class:`list` of :class:`tuple` of :class:`int`.
     """
     print('{:<25}{:<30}{:<35}{:<25}{:<30}'.format('Usage frequency range', 'Number of tags in the range',
                                                   'Number of tags in the range [%]', 'Cumulative total usage', 'Cumulative total usage [%]'))
