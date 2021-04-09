@@ -35,7 +35,7 @@ $ python setup.py develop
 To conveniently work with the jupyter notebooks it is recommended to install anaconda and use jupyter lab.
 
 ## Features
-List of features ready and TODOs for future development
+List of features ready
 1.	[Initital data analysis](notebooks/1.0-me-initial-data-exploration.ipynb)
 2.	[Document representation](notebooks/2.0-me-document-representation.ipynb)
     1.	[Bag of words](notebooks/2.1-me-bag-of-words.ipynb)
