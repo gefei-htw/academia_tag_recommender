@@ -36,7 +36,7 @@ List of features ready and TODOs for future development
     2.	[Embedding](notebooks/2.2-embedding.ipynb)
     3.	[Dimensionality reduction](notebooks/2.3-me-dimensionality-reduction.ipynb)
 3.	[Evaluation metrics](notebooks/3.0-me-evaluation-metrics.ipynb)
-4.	[Classification](notebooks/4.0-me-classification.ipynb) _in progress_
+4.	[Classification](notebooks/4.0-me-classification.ipynb)
     1.	[Tfidf](notebooks/4.1-me-classification-bow.ipynb)
     2.	[Count](notebooks/4.2-me-classification-count.ipynb)
     3.	[Word2Vec](notebooks/4.3-me-classification-word2vec.ipynb)
